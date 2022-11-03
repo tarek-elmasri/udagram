@@ -28,7 +28,7 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     customLaunchers: {
       ChromeHeadlessCI: {
-        base: 'Chrome',
+        base: 'ChromeHeadlessCI',
         flags: ['--no-sandbox'] // for running within Docker
       }
     },
