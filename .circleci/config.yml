@@ -44,23 +44,6 @@ jobs:
           name: API Build
           command: |
             npm run api:build
-  # deploy step will run only after manual approval
-  test:
-    docker:
-      - image: "cimg/node:16.17.1-browsers"
-    # more steps needed for frontend unit test
-    steps:
-      - checkout
-      - restore_cache:
-          key: udagram-frontend-{{ .Branch }}-{{ checksum "udagram-frontend/package-lock.json" }}
-      - run: npm run frontend:install
-      - save_cache:
-          key: udagram-frontend-{{ .Branch }}-{{ checksum "udagram-frontend/package-lock.json" }}
-          paths:
-            - ~/udagram-frontend/node_modules
-      - run:
-          name: Unit TEST FRONTEND
-          command: npm run frontend:test
 
   deploy:
     docker:
@@ -82,9 +65,6 @@ workflows:
   udagram:
     jobs:
       - build
-      - test:
-          requires:
-            - build
       - hold:
           filters:
             branches:

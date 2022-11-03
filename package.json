@@ -3,7 +3,7 @@
       "frontend:install": "cd udagram-frontend && npm install -f",
       "frontend:start": "cd udagram-frontend && npm run start",
       "frontend:build": "cd udagram-frontend && npm run build",
-      "frontend:test": "cd udagram-frontend && npm run test -- --no-progress --browsers=ChromeHeadlessCI",
+      "frontend:test": "cd udagram-frontend && npm run test",
       "frontend:e2e": "cd udagram-frontend && npm run e2e",
       "frontend:lint": "cd udagram-frontend && npm run lint",
       "frontend:deploy": "cd udagram-frontend && npm run deploy",
