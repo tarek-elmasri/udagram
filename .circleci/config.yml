@@ -48,17 +48,20 @@ jobs:
   # deploy step will run only after manual approval
   test:
     docker:
-      - image: "cimg/node:16.17.1-browsers"
+      - image: "cimg/node:16.17.1"
     # more steps needed for frontend unit test
     steps:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
+      - node/install:
+          node-version: 16.17.1
       - run:
           name: Check Browser Tools Installed
           command: |
             google-chrome --version
             chromedriver --version
       - checkout
+      - run: npm run frontend:install
       - restore_cache:
           key: ng-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - save_cache:
@@ -75,7 +78,7 @@ jobs:
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: "14.15"
+          node-version: "16.17.1"
       - eb/setup
       - aws-cli/setup
       - checkout
