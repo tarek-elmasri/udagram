@@ -61,13 +61,13 @@ jobs:
             google-chrome --version
             chromedriver --version
       - checkout
-      - run: npm run frontend:install
       - restore_cache:
           key: ng-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm run frontend:install
       - save_cache:
           key: ng-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
-            - "node_modules"
+            - node_modules
       - run:
           name: Unit TEST FRONTEND
           command: npm run frontend:test
