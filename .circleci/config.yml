@@ -47,16 +47,18 @@ jobs:
             npm run api:build
   # deploy step will run only after manual approval
   test:
+    working_directory: ~/udagram/udagram-frontend
     docker:
       - image: "circleci/node:10-browsers"
     # more steps needed for frontend unit test
     steps:
-      - checkout
+      - checkout:
+          path: ~/udagram
       - restore_cache:
-          key: ng-project-{{ .Branch }}-{{ checksum "udagram-frontend/package-lock.json" }}
+          key: udagram-frontend-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm run frontend:install
       - save_cache:
-          key: ng-project-{{ .Branch }}-{{ checksum "udagram-frontend/package-lock.json" }}
+          key: udagram-frontend-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - run:
