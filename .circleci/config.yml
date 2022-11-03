@@ -4,6 +4,7 @@ orbs:
   node: circleci/node@5.0.2
   eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.1.1
+  browser-tools: circleci/browser-tools@1.4.0
   # different jobs are calles later in the workflows sections
 jobs:
   build:
@@ -45,6 +46,29 @@ jobs:
           command: |
             npm run api:build
   # deploy step will run only after manual approval
+  test:
+    docker:
+      - image: "cimg/node:13.12-browsers"
+    # more steps needed for frontend unit test
+    steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - run:
+          name: Check Browser Tools Installed
+          command: |
+            google-chrome --version
+            chromedriver --version
+      - checkout
+      - restore_cache:
+          key: ng-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - save_cache:
+          key: ng-project-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+      - run:
+          name: Unit TEST FRONTEND
+          command: npm run frontend:test
+
   deploy:
     docker:
       - image: "cimg/base:stable"
@@ -65,6 +89,9 @@ workflows:
   udagram:
     jobs:
       - build
+      - test:
+          requires:
+            - build
       - hold:
           filters:
             branches:
