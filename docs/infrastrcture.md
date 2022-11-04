@@ -10,4 +10,4 @@ udagram application uses 3 separated AWS services and connected to each other.
 
 ### Infrastructure Archeticture Diagram:
 
-![infrastructure diagram](https://github.com/tarek/udagram/docs/infrastructure.png?raw=true)
+![infrastructure diagram](https://github.com/tarek-elmasri/udagram/blob/main/docs/infrastructure.png?raw=true)
