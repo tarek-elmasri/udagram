@@ -6,9 +6,9 @@ example on hosting a full stack application using aws services and implementing 
 
 ### Project Links
 
-[Udagram Api](http://aws.east.com)
+[Udagram Api](http://udagram-api-dev.us-east-1.elasticbeanstalk.com/)
 
-[Udagram Frontend](http://s3.amazon.com/project)
+[Udagram Frontend](http://udagram-frontend-dev.s3-website-us-east-1.amazonaws.com/)
 
 ### Project Overview Diagram
 
