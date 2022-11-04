@@ -12,7 +12,7 @@ example on hosting a full stack application using aws services and implementing 
 
 ### Project Overview Diagram
 
-![Project Overview](https://github.com/tarek/udagram/docs/overview.png?raw=true)
+![Project Overview](https://github.com/tarek-elmasri/udagram/blob/main/docs/overview.png?raw=true)
 
 ### Dependencies
 
