@@ -1,9 +1,6 @@
 // rewrite environment file for angular frontend project with env variables provided
 const { writeFile } = require('fs')
 const path = require('path')
-const dotenv = require('dotenv')
-
-dotenv.config()
 
 const targetFile = path.join(__dirname, '..', 'udagram-frontend', 'src', 'environments', 'environment.ts')
 
